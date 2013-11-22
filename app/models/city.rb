@@ -8,7 +8,7 @@ class City
 
   many :job_listings
 
-  def url
+  def absolute_url
     "https://#{subdomain}.craigslist.org"
   end
 

@@ -1,6 +1,0 @@
-class Craigslist
-
-private
-
-
-end
