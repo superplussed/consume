@@ -1,7 +1,5 @@
-class Craigslist::CitiesList
+class Scraper::Craigslist::CityList
   include Parser
-
-  URL = "http://www.craigslist.org/about/sites"
 
   def scrape
     document.css(".colmask").each_with_index do |col, col_index|
@@ -22,6 +20,10 @@ class Craigslist::CitiesList
   end
 
 private
+
+  def url
+    "http://www.craigslist.org/about/sites"
+  end
 
   def countries
     @countries ||= document.css("h1").map{|country| country.text().to_s}

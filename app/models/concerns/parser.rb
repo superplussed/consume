@@ -15,7 +15,7 @@ module Parser
   end
 
   def document
-    Document.new(self.url || self.URL).root
+    Scraper::Document.new(url).root if url
   end
 
 end

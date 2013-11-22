@@ -2,13 +2,21 @@ require 'nokogiri'
 require 'open-uri'
 require 'openssl'
 
-class Document
-  attr_accessor :link, :path, :root
+class Scraper::Document
+  include Attrio
+
+  define_attributes do
+    attr :path, String
+    attr :root, Nokogiri::HTML
+  end
 
   def initialize path
     @path = path
-    @link = Link.new(path) unless path[0] == "/"
     @root = fetch_document
+  end
+
+  def link
+    @link ||= Scraper::Link.new(path)
   end
 
 private
@@ -16,10 +24,10 @@ private
   def fetch_document
     if link && link.secure?
       get_remote_secure
+    elsif path[0] == "/"
+      get_local
     elsif link
       get_remote
-    else
-      get_local
     end
   end
 

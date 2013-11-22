@@ -1,4 +1,4 @@
-class Craigslist::JobListingsList
+class Scraper::Craigslist::JobListingList
   include Attrio, MassAssignment, Parser
 
   CATEGORIES = ["eng", "sof", "web"]

@@ -5,7 +5,7 @@ class JobListing::Create < Mutations::Command
     string :url
     string :title
     boolean :remote
-    datetime :date
+    time :date
   end
 
   def execute

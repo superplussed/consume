@@ -12,7 +12,12 @@ class JobListing
 
   belongs_to :city
 
+
+  def self.scrape
+    Scraper::Craigslist::JobListingList.new.scrape
+  end
+
   def absolute_url
-    "#{city.url}#{url}"
+    "#{city.absolute_url}#{url}"
   end
 end
