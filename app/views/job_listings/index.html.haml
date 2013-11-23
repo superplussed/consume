@@ -1,26 +1,26 @@
 %table
   %tr
-    %th Date
+    %th.date-col Posted
     %th Title
     %th Comp
     %th 
     %th 
     %th
 
-  - job_listings.each do |listing|
+  - job_listings.each do |job_listing|
     %tr
-      %td.date= timeago_tag listing.posted_at,  :nojs => true
-      %td= link_to listing[:title], job_listing_path(listing.id)
-      %td.location=listing.compensation
+      %td.date= time_ago(job_listing.posted_at)
+      %td= link_to job_listing[:title], job_listing_path(job_listing.id)
+      %td.location=job_listing.compensation
       %td
-        -if listing[:email].present?
-          %a.icon{href: listing[:email]}
+        -if job_listing[:email].present?
+          %a.icon{href: job_listing[:email]}
             %i.fa.fa-envelope-o.fa-lg
       %td
-        %a.icon{href: listing.absolute_url, target: "_blank"}
+        %a.icon{href: job_listing.absolute_url, target: "_blank"}
           %i.fa.fa-files-o.fa-lg
       %td
-        %a.icon{href: "job_listings/#{listing.id}/scrape"}
+        %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
           %i.fa.fa-wrench.fa-lg
 
 =render("shared/paginate", count: count, page: page)

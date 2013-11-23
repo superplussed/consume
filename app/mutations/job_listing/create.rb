@@ -8,8 +8,8 @@ class JobListing::Create < Mutations::Command
   end
 
   def execute
-    unless JobListing.find_by_url(url)
-      city.job_listings.push(inputs)
+    unless JobListing.where(url: url).exists?
+      city.job_listings.create(inputs)
     end
   end
 end

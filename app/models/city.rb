@@ -1,15 +1,13 @@
-class City
-  include MongoMapper::Document
+class City < ActiveRecord::Base
 
-  key :subdomain
-  key :name
-  key :state
-  key :country
-
-  many :job_listings
+  has_many :job_listings
 
   def self.scrape
     Scraper::Craigslist::CityList.new.scrape
+  end
+
+  def self.next
+    City.where(country: 'US').sort(:last_scraped_at.desc)
   end
 
   def absolute_url

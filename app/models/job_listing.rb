@@ -1,14 +1,4 @@
-class JobListing
-  include MongoMapper::Document
-
-  key :title
-  key :url
-  key :body
-  key :email
-  key :remote, Boolean
-  key :date
-  key :compensation
-  key :craigslist_id
+class JobListing < ActiveRecord::Base
 
   belongs_to :city
 

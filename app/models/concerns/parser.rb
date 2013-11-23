@@ -12,7 +12,9 @@ module Parser
   end
 
   def match str, regex
-    res[1] if res = str.match(regex)
+    if res = str.match(regex)
+      res[1] 
+    end
   end
 
   def document

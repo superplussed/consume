@@ -12,7 +12,7 @@ class Scraper::Craigslist::JobListing
       doc = document
       p "comp: #{compensation(doc)}"
       JobListing::Update.run!(
-        id: job_listing._id.to_s,
+        id: job_listing.id,
         body: body(doc),
         email: email(doc),
         compensation: compensation(doc),

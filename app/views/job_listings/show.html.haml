@@ -4,7 +4,7 @@
 .row
   %ul
     %li=job_listing.id
-    %li=timeago_tag job_listing.posted_at, :nojs => true
+    %li=time_ago_in_words(job_listing.posted_at)
     - if job_listing.compensation
       %li=job_listing.compensation
     %li=job_listing.city.name.titlecase

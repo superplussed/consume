@@ -1,7 +1,7 @@
 class JobListing::Update < Mutations::Command
 
   required do
-    string :id
+    integer :id
     string :posted_at
     string :body
   end
@@ -17,6 +17,6 @@ class JobListing::Update < Mutations::Command
 
   def execute
     self.posted_at = self.posted_at.to_time
-    JobListing.find(id).set(inputs)
+    JobListing.find(id).update_attributes(inputs)
   end
 end

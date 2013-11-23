@@ -1,7 +1,7 @@
 class JobListingsController < ApplicationController
-  expose(:job_listing)
-  expose(:job_listings) {JobListing.where(:body.ne => nil).paginate({order: :posted_at.desc, per_page: per_page, page: page})}
-  expose(:count) {JobListing.count}
+  expose(:job_listing) {JobListing.find(params[:id])}
+  expose(:job_listings) {JobListing.where.not(body: nil)}
+  expose(:count) {JobListing.where.not(body: nil).count}
 
   def update
     respond_to do |format|
