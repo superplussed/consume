@@ -1,6 +1,7 @@
 class JobListingsController < ApplicationController
   expose(:job_listing)
-  expose(:job_listings) {JobListing.where(:body.ne => nil).sort(:posted_at.desc)}
+  expose(:job_listings) {JobListing.where(:body.ne => nil).paginate({order: :posted_at.desc, per_page: per_page, page: page})}
+  expose(:count) {JobListing.count}
 
   def update
     respond_to do |format|
@@ -27,9 +28,9 @@ class JobListingsController < ApplicationController
     end
   end
 
-  private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def job_listing_params
-      params.require(:job_listing).permit(:title, :body, :posted_at, :email, :url)
-    end
+private
+
+  def job_listing_params
+    params.require(:job_listing).permit(:title, :body, :posted_at, :email, :url)
+  end
 end

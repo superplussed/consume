@@ -1,0 +1,20 @@
+%ul.pagination
+  %li.arrow{"class" => page == 1 ? "unavailable" : ""}
+    %a{href: url_for_page(prev_page)} &#171;
+
+  - (1..midpoint).each do |num|
+    %li{"class" => num == page ? "current" : ""}
+      %a{href: url_for_page(num)}=num
+
+  -if total_pages > 8
+    %li.unavailable
+      %a{href: "javascript:;"} &#8230;
+
+  - (midpoint+1..total_pages).each do |num|
+    %li{"class" => num == page ? "current" : ""}
+      %a{href: url_for_page(num)}=num
+
+  %li.arrow{"class" => page == total_pages ? "unavailable" : ""}
+    %a{href: url_for_page(next_page)} &#187;
+
+      

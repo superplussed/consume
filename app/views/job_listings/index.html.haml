@@ -14,12 +14,13 @@
       %td.location=listing.compensation
       %td
         -if listing[:email].present?
-          %a{href: listing[:email]}
+          %a.icon{href: listing[:email]}
             %i.fa.fa-envelope-o.fa-lg
       %td
-        %a{href: listing.absolute_url, target: "_blank"}
+        %a.icon{href: listing.absolute_url, target: "_blank"}
           %i.fa.fa-files-o.fa-lg
       %td
-        %a{href: "job_listings/#{listing.id}/scrape"}
+        %a.icon{href: "job_listings/#{listing.id}/scrape"}
           %i.fa.fa-wrench.fa-lg
-      
+
+=render("shared/paginate", count: count, page: page)

@@ -3,9 +3,11 @@
 
 .row
   %ul
+    %li=job_listing.id
     %li=timeago_tag job_listing.posted_at, :nojs => true
-    %li=job_listing.compensation
-    %li=job_listing.city.name
+    - if job_listing.compensation
+      %li=job_listing.compensation
+    %li=job_listing.city.name.titlecase
 
 .row
   %section.body= job_listing.body.html_safe

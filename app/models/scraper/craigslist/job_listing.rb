@@ -10,6 +10,7 @@ class Scraper::Craigslist::JobListing
     query.each do |job_listing|
       @url = job_listing.absolute_url
       doc = document
+      p "comp: #{compensation(doc)}"
       JobListing::Update.run!(
         id: job_listing._id.to_s,
         body: body(doc),
@@ -54,6 +55,7 @@ private
       match = blurb.text().to_s.strip.match("Compensation:(.*)")
       return match[1].strip if match
     end
+    nil
   end
 
   def date doc
