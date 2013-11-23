@@ -2,6 +2,7 @@ class Scraper::Craigslist::JobListing
   include Parser, Attrio, MassAssignment
 
   define_attributes do 
+    attr :id, String
     attr :url, String
   end
 
@@ -23,29 +24,36 @@ class Scraper::Craigslist::JobListing
 private
 
   def query 
-    if url.present?
-      [JobListing.find_by_url(url.match(".*.org(.*)")[1])]
+    if id.present?
+      JobListing.where(_id: id)
     else
-      JobListing.where(body: nil).limit(1)
+      JobListing.where(body: nil)
     end
   end
 
   def craigslist_id doc
-    doc.css("input[name=postingID]").attribute("value")
+    el = doc.css("input[name=postingID]")
+    el.attribute("value") if el.present?
   end
 
   def email doc
-    el = doc.css(".returnemail")
-    tag[:href] if el.present? && tag = parse_a_tag(el)
+    el = doc.css(".replylink")
+    if el.present?
+      tag = parse_a_tag(el)
+      tag[:href] if tag
+    end
   end
 
   def body doc
-    doc.css(".userbody").to_s
+    body = doc.css('#postingbody').to_s
+    body.present? ? body : doc.css(".userbody").to_s
   end
 
   def compensation doc
-    blurbs = doc.css(".blurbs li")
-    compensation = blurbs[1].text().to_s
+    doc.css(".blurbs li").each do |blurb|
+      match = blurb.text().to_s.strip.match("Compensation:(.*)")
+      return match[1].strip if match
+    end
   end
 
   def date doc

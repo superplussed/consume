@@ -1,7 +1,9 @@
 Consume::Application.routes.draw do
 
   root 'job_listings#index'
-  resources :job_listings
+  resources :job_listings do
+    get :scrape
+  end
   resources :cities
 
   # The priority is based upon order of creation: first created -> highest priority.

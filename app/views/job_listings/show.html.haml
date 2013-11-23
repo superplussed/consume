@@ -1,21 +1,20 @@
-%p#notice= notice
+.row
+  %h2=job_listing.title
 
-%p
-  %b Title:
-  = @job_listing.title
-%p
-  %b Body:
-  = @job_listing.body
-%p
-  %b Posted at:
-  = @job_listing.posted_at
-%p
-  %b Email:
-  = @job_listing.email
-%p
-  %b Url:
-  = @job_listing.url
+.row
+  %ul
+    %li=timeago_tag job_listing.posted_at, :nojs => true
+    %li=job_listing.compensation
+    %li=job_listing.city.name
 
-= link_to 'Edit', edit_job_listing_path(@job_listing)
-\|
-= link_to 'Back', job_listings_path
+.row
+  %section.body= job_listing.body.html_safe
+
+.row
+  - if job_listing.email.present?
+    .button=link_to 'Email', job_listing.email
+
+  .button=link_to 'Craigslist', job_listing.absolute_url
+
+  .button= link_to 'Scrape', job_listing_scrape_path(job_listing.id)
+  .button= link_to 'View All', job_listings_path

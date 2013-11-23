@@ -2,16 +2,24 @@
   %tr
     %th Date
     %th Title
-    %th Email
-    %th Url
+    %th Comp
+    %th 
+    %th 
+    %th
 
-  - @job_listings.each do |job_listing|
+  - job_listings.each do |listing|
     %tr
-      %td= job_listing.posted_at
-      %td= link_to job_listing.title, job_listing
-      %td= job_listing.email
-      %td= link_to 'View', job_listing.absolute_url
+      %td.date= timeago_tag listing.posted_at,  :nojs => true
+      %td= link_to listing[:title], job_listing_path(listing.id)
+      %td.location=listing.compensation
+      %td
+        -if listing[:email].present?
+          %a{href: listing[:email]}
+            %i.fa.fa-envelope-o.fa-lg
+      %td
+        %a{href: listing.absolute_url, target: "_blank"}
+          %i.fa.fa-files-o.fa-lg
+      %td
+        %a{href: "job_listings/#{listing.id}/scrape"}
+          %i.fa.fa-wrench.fa-lg
       
-%br
-
-= link_to 'New Job listing', new_job_listing_path

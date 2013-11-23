@@ -5,9 +5,10 @@
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
     %title C.ONSU.ME
     = stylesheet_link_tag    "application"
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
     = render("shared/navigation")
-    = yield
+    %main= yield
     = javascript_include_tag "application"

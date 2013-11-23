@@ -17,6 +17,8 @@ gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'foundation-rails'
+gem 'rails-timeago'
+gem "font-awesome-rails"
 
 group :development do
   gem 'jazz_hands'
