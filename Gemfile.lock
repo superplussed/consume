@@ -72,10 +72,20 @@ GEM
     diffy (3.0.1)
     erubis (2.7.0)
     execjs (2.0.2)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     grit (2.5.0)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
       posix-spawn (~> 0.3.6)
+    haml (4.0.3)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.3)
     hirb (0.7.1)
     i18n (0.6.5)
@@ -201,6 +211,8 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.0.0)
   decent_exposure
+  foundation-rails
+  haml-rails
   jazz_hands
   jbuilder (~> 1.2)
   jquery-rails

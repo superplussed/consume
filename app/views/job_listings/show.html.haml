@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @job_listing.title
+%p
+  %b Body:
+  = @job_listing.body
+%p
+  %b Posted at:
+  = @job_listing.posted_at
+%p
+  %b Email:
+  = @job_listing.email
+%p
+  %b Url:
+  = @job_listing.url
+
+= link_to 'Edit', edit_job_listing_path(@job_listing)
+\|
+= link_to 'Back', job_listings_path

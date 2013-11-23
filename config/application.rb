@@ -11,8 +11,12 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Remotely
+module Consume
   class Application < Rails::Application
+
+    config.generators do |g|
+      g.template_engine :haml
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

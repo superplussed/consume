@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Remotely::Application.load_tasks
+Consume::Application.load_tasks

@@ -1,0 +1,17 @@
+%table
+  %tr
+    %th Date
+    %th Title
+    %th Email
+    %th Url
+
+  - @job_listings.each do |job_listing|
+    %tr
+      %td= job_listing.posted_at
+      %td= link_to job_listing.title, job_listing
+      %td= job_listing.email
+      %td= link_to 'View', job_listing.absolute_url
+      
+%br
+
+= link_to 'New Job listing', new_job_listing_path
