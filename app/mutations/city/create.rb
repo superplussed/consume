@@ -9,12 +9,7 @@ class City::Create < Mutations::Command
 
   def execute
     unless City.find_by_name_and_state_and_country(name, state, country)
-      City.create(
-        subdomain: subdomain, 
-        name: name, 
-        state: state, 
-        country: country
-      )
+      City.create!(inputs)
     end
   end
 end

@@ -3,15 +3,16 @@ module Parser
   
   def parse_a_tag el
     a_tag = el.css("a")
-    {
-      href: a_tag.attribute("href").to_s,
-      text: a_tag.text().to_s
-    }
+    if a_tag.present?
+      {
+        href: a_tag.attribute("href").to_s,
+        text: a_tag.text().to_s
+      }
+    end
   end
 
   def match str, regex
-    res = str.match(regex)
-    res[1] if res
+    res[1] if res = str.match(regex)
   end
 
   def document

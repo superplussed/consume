@@ -1,20 +1,22 @@
 class JobListing::Update < Mutations::Command
 
   required do
-    string :url
+    string :id
+    string :posted_at
+    string :body
   end
 
   optional do
+    string :url
+    string :email
+    string :compensation
     string :title
     boolean :remote
-    time :date
+    date :date
   end
 
   def execute
-    JobListing.find_by_url(url).set(
-      title: title,
-      remote: remote,
-      date: date
-    )
+    self.posted_at = self.posted_at.to_time
+    JobListing.find(id).set(inputs)
   end
 end

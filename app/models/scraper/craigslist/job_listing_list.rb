@@ -17,24 +17,17 @@ class Scraper::Craigslist::JobListingList
       document.css(".row").each do |row|
         pl = row.css(".pl")
         a_tag = parse_a_tag(pl)
-        binding.pry
         JobListing::Create.run!(
           city: city,
           url: a_tag[:href], 
           title: a_tag[:text], 
-          remote: remote, 
-          date: date(pl)
+          remote: remote
         )
       end
     end
   end
 
 private
-
-  def date el
-    date = el.css(".date").text().to_s
-    Chronic.parse("#{date} 2013")
-  end
 
   def create_url category
     if remote

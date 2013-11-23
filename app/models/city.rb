@@ -8,7 +8,6 @@ class City
 
   many :job_listings
 
-
   def self.scrape
     Scraper::Craigslist::CityList.new.scrape
   end

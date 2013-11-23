@@ -3,7 +3,6 @@ module MassAssignment
 
   def initialize(attributes = {})
       set_attributes(attributes)
-      super
     end
 
   def set_attributes(attributes)

@@ -1,26 +1,57 @@
 class Scraper::Craigslist::JobListing
-  include Attrio, MassAssignment, Parser
+  include Parser, Attrio, MassAssignment
 
-  CATEGORIES = ["eng", "sof", "web"]
-
-  define_attributes do
+  define_attributes do 
     attr :url, String
-    attr :subdomain, String, default: "newyork"
-    attr :from, DateTime, default: 1.month.ago
-    attr :to, DateTime, default: Time.now
-    attr :remote, Boolean, default: true
   end
 
-  def scrape
-    JobListing.where(body: nil).each do |listing|
-      doc = Document.new(listing.absolute_url)
-      body = doc.css(".postingbody").to_s
-      body = doc.css(".userbody").to_s if body.blank?
-      a = doc.css(".replylink")
-      email = a.attribute("href").to_s unless a.blank?
-      blurbs = doc.css(".blurbs li")
-      compensation = blurbs[1].text().to_s
-      p "email: #{email} compensation: #{compensation}"
-      listing.set(body: body, compensation: compensation, email: email)
+  def scrape 
+    query.each do |job_listing|
+      @url = job_listing.absolute_url
+      doc = document
+      JobListing::Update.run!(
+        id: job_listing._id.to_s,
+        body: body(doc),
+        email: email(doc),
+        compensation: compensation(doc),
+        posted_at: date(doc),
+        craigslist_id: craigslist_id(doc)
+      )
     end
+  end
+
+private
+
+  def query 
+    if url.present?
+      [JobListing.find_by_url(url.match(".*.org(.*)")[1])]
+    else
+      JobListing.where(body: nil).limit(1)
+    end
+  end
+
+  def craigslist_id doc
+    doc.css("input[name=postingID]").attribute("value")
+  end
+
+  def email doc
+    el = doc.css(".returnemail")
+    tag[:href] if el.present? && tag = parse_a_tag(el)
+  end
+
+  def body doc
+    doc.css(".userbody").to_s
+  end
+
+  def compensation doc
+    blurbs = doc.css(".blurbs li")
+    compensation = blurbs[1].text().to_s
+  end
+
+  def date doc
+    if date_tag = doc.css("time")[0]
+      Chronic.parse(date_tag.attribute("datetime").to_s).to_s
+    end
+  end
+
 end
