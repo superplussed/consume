@@ -12,17 +12,19 @@ class Scraper::Craigslist::JobListingList
   end
 
   def scrape    
-    CATEGORIES.each do |category|
-      @url = create_url(category)
-      document.css(".row").each do |row|
-        pl = row.css(".pl")
-        a_tag = parse_a_tag(pl)
-        JobListing::Create.run!(
-          city: city,
-          url: a_tag[:href], 
-          title: a_tag[:text], 
-          remote: remote
-        )
+    if document && !document.error
+      CATEGORIES.each do |category|
+        @url = create_url(category)
+        document.css(".row").each do |row|
+          pl = row.css(".pl")
+          a_tag = parse_a_tag(pl)
+          ::JobListing::Create.run!(
+            city: city,
+            url: a_tag[:href], 
+            title: a_tag[:text], 
+            remote: remote
+          )
+        end
       end
     end
   end
@@ -38,6 +40,7 @@ private
   end
 
   def city
-    City.find_by_subdomain(subdomain)
+    p "city"
+    City.where(subdomain: subdomain).first
   end
 end

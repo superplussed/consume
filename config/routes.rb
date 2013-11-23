@@ -1,7 +1,7 @@
 Consume::Application.routes.draw do
 
-  # require 'sidekiq/web'
-  # mount Sidekiq::Web => '/admin/sidekiq'
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/admin/sidekiq'
 
   # authenticate :user, lambda { |u| u.has_role?(:super_admin) } do
   #   mount Sidekiq::Web => '/admin/sidekiq'

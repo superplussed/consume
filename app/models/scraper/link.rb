@@ -6,6 +6,7 @@ class Scraper::Link
   define_attributes do
     attr :uri, String
     attr :url, String
+    attr :error, String
   end
 
   delegate :path, to: :uri
@@ -14,7 +15,7 @@ class Scraper::Link
   def initialize url
     @url = url
     normalize_url
-    @uri = URI(@url)
+    @uri = URI(@url) unless error.present?
   end
 
   def secure?
@@ -78,11 +79,15 @@ private
 
   def get_redirected_url(url, limit = 10)
     unless limit == 0
-      response = Net::HTTP.get_response(URI(url))
-      if[Net::HTTPRedirection, Net::HTTPMovedPermanently].include?(response.class)
-        get_redirected_url(response['location'], limit - 1)
-      else
-        url
+      begin
+        response = Net::HTTP.get_response(URI(url))
+        if[Net::HTTPRedirection, Net::HTTPMovedPermanently].include?(response.class)
+          get_redirected_url(response['location'], limit - 1)
+        else
+          url
+        end
+      rescue
+        @error = "Error fetching URL"
       end
     end
   end

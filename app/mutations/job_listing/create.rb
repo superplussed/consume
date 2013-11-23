@@ -9,7 +9,8 @@ class JobListing::Create < Mutations::Command
 
   def execute
     unless JobListing.where(url: url).exists?
-      city.job_listings.create(inputs)
+      job_listing = city.job_listings.create(inputs)
+      JobListingWorker.perform_async(job_listing.id)
     end
   end
 end

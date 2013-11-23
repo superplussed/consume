@@ -7,26 +7,29 @@ class Scraper::Document
 
   define_attributes do
     attr :path, String
+    attr :error, String
     attr :root, Nokogiri::HTML
+    attr :link, Scraper::Link
   end
 
   def initialize path
-    @path = path
-    @root = fetch_document
-  end
-
-  def link
-    @link ||= Scraper::Link.new(path)
+    @link = Scraper::Link.new(path)
+    if link.error
+      @error = link.error
+    else
+      @path = path
+      @root = fetch_document 
+    end
   end
 
 private
 
   def fetch_document
-    if link && link.secure?
+    if link.secure?
       get_remote_secure
     elsif path[0] == "/"
       get_local
-    elsif link
+    else
       get_remote
     end
   end

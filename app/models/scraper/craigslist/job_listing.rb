@@ -2,22 +2,24 @@ class Scraper::Craigslist::JobListing
   include Parser, Attrio, MassAssignment
 
   define_attributes do 
-    attr :id, String
+    attr :id, Integer
     attr :url, String
   end
 
   def scrape 
-    query.each do |job_listing|
-      @url = job_listing.absolute_url
-      doc = document
-      JobListing::Update.run!(
-        id: job_listing.id,
-        body: body(doc),
-        email: email(doc),
-        compensation: compensation(doc),
-        posted_at: date(doc),
-        craigslist_id: craigslist_id(doc)
-      )
+    if document && !document.error
+      query.each do |job_listing|
+        @url = job_listing.absolute_url
+        doc = document
+        ::JobListing::Update.run!(
+          id: job_listing.id,
+          body: body(doc),
+          email: email(doc),
+          compensation: compensation(doc),
+          posted_at: date(doc),
+          craigslist_id: craigslist_id(doc)
+        )
+      end
     end
   end
 
@@ -25,7 +27,7 @@ private
 
   def query 
     if id.present?
-      JobListing.where(_id: id)
+      JobListing.where(id: id)
     else
       JobListing.where(body: nil)
     end
