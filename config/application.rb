@@ -13,8 +13,6 @@ module Consume
       g.template_engine :haml
     end
 
-    WillPaginate.per_page = 50
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

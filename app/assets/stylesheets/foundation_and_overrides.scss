@@ -584,11 +584,11 @@
 // $pagination-li-float: $default-float;
 // $pagination-li-height: rem-calc(24);
 // $pagination-li-font-color: #222;
-// $pagination-li-font-size: rem-calc(14);
+$pagination-li-font-size: 13px;
 // $pagination-li-margin: rem-calc(5);
 
 // We use these for the pagination anchor links
-// $pagination-link-pad: rem-calc(1 10 1);
+$pagination-link-pad: 3px 8px;
 // $pagination-link-font-color: #999;
 // $pagination-link-active-bg: darken(#fff, 10%);
 

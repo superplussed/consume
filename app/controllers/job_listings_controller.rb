@@ -1,7 +1,6 @@
 class JobListingsController < ApplicationController
   expose(:job_listing) {JobListing.find(params[:id])}
-  expose(:job_listings) {JobListing.where.not(body: nil)}
-  expose(:count) {JobListing.where.not(body: nil).count}
+  expose(:job_listings) {JobListing.where.not(body: nil).order(posted_at: :desc).page(page)}
 
   def update
     respond_to do |format|
