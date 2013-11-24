@@ -2,6 +2,8 @@ class JobListing < ActiveRecord::Base
 
   belongs_to :city
 
+  scope :for_display, where("error = false AND body IS NOT NULL")
+
   def self.scrape
     Scraper::Craigslist::JobListingList.new({}).scrape
   end
@@ -15,6 +17,10 @@ class JobListing < ActiveRecord::Base
   end
 
   def absolute_url
-    "#{city.absolute_url}#{url}"
+    if url[0] == "/"
+      "#{city.absolute_url}#{url}"
+    else
+      url
+    end
   end
 end

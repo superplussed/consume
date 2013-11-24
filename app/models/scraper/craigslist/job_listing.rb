@@ -7,19 +7,18 @@ class Scraper::Craigslist::JobListing
   end
 
   def scrape 
-    if document && !document.error
-      query.each do |job_listing|
-        @url = job_listing.absolute_url
-        doc = document
-        ::JobListing::Update.run!(
-          id: job_listing.id,
-          body: body(doc),
-          email: email(doc),
-          compensation: compensation(doc),
-          posted_at: date(doc),
-          craigslist_id: craigslist_id(doc)
-        )
-      end
+    query.each do |job_listing|
+      @url = job_listing.absolute_url
+      doc = document
+      res = ::JobListing::Update.run(
+        id: job_listing.id,
+        body: body(doc),
+        email: email(doc),
+        compensation: compensation(doc),
+        posted_at: date(doc),
+        craigslist_id: craigslist_id(doc)
+      )
+      job_listing.update_attributes(error: true, error_message: res.errors.to_s) unless res.success?
     end
   end
 
@@ -60,9 +59,13 @@ private
   end
 
   def date doc
-    if date_tag = doc.css("time")[0]
-      Chronic.parse(date_tag.attribute("datetime").to_s).to_s
+    if time_tag = doc.css("time")[0]
+      date_str = time_tag.attribute("datetime").to_s
+    elsif date_tag = doc.css("date")[0]
+      date_str = date_tag.text().to_s
+      date_str = date_str.gsub("EST", "").gsub("MST", "").gsub("PST", "").gsub("CMT", "")
     end
+    Chronic.parse(date_str.squish).to_s if date_str
   end
 
 end

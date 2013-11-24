@@ -2,19 +2,17 @@ class Scraper::Craigslist::CityList
   include Parser
 
   def scrape
-    if document && !document.error
-      document.css(".colmask").each_with_index do |col, col_index|
-        col.css(".box").each do |box|
-          box.css("ul").each_with_index do |ul, ul_index|
-            ul.css("li").each do |li|
-              a_tag = parse_a_tag(li)
-              ::City::Create.run!(
-                subdomain: match(a_tag[:href], "http:\/\/(.*).craigslist"), 
-                name: a_tag[:text], 
-                state: states(box)[ul_index].to_s, 
-                country: countries[col_index].to_s
-              )
-            end
+    document.css(".colmask").each_with_index do |col, col_index|
+      col.css(".box").each do |box|
+        box.css("ul").each_with_index do |ul, ul_index|
+          ul.css("li").each do |li|
+            a_tag = parse_a_tag(li)
+            ::City::Create.run!(
+              subdomain: match(a_tag[:href], "http:\/\/(.*).craigslist"), 
+              name: a_tag[:text], 
+              state: states(box)[ul_index].to_s, 
+              country: countries[col_index].to_s
+            )
           end
         end
       end
