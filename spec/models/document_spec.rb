@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Consumer::Document do
+describe Document do
 
   let(:basic) { Consumer::Document.new("#{Rails.root}/spec/sites/test/index.html") }
   let(:chartbeat) { Consumer::Document.new("http://chartbeat.com/jobs") }

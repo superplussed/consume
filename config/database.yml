@@ -49,7 +49,7 @@ test:
   encoding: unicode
   database: consume_test
   pool: 5
-  username: root
+  username: JJS
   password:
 
 production:
@@ -57,5 +57,5 @@ production:
   encoding: unicode
   database: consume_production
   pool: 5
-  username: root
+  username: JJS
   password:
