@@ -7,6 +7,6 @@ class CityWorker
   # def perform 
   #   city = CityList.next_in_queue
   #   p "city: #{city.name}"
-  #   city.scrape_job_listings
+  #   city.scrape
   # end
 end

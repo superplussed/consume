@@ -2,13 +2,13 @@ class City < ActiveRecord::Base
   extend AdminConfig::City
 
   has_many :job_listings
-  attr_accessible :error, :error_message, :updated_at, :created_at, :name, :abbrev, :state, :country, :last_scrape_started_at, :last_scrape_ended_at
+  attr_accessible :subdomain, :error, :error_message, :updated_at, :created_at, :name, :abbrev, :state, :country, :last_scrape_started_at, :last_scrape_ended_at
 
   admin_block.call(rails_admin)
 
-  def scrape_job_listings
+  def scrape
     self.update_attributes(last_scrape_started_at: DateTime.now)
-    Scraper::JobList.new(subdomain: self.subdomain).scrape
+    Consumer::JobList.new(subdomain: self.subdomain).scrape
     self.update_attributes(last_scrape_ended_at: DateTime.now)
   end
 
@@ -17,7 +17,7 @@ class City < ActiveRecord::Base
   end
 
   def urls
-    Scraper::JobList.new({subdomain: subdomain})
+    Consumer::JobList.new({subdomain: subdomain}).urls
   end
 
 end

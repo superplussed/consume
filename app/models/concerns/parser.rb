@@ -17,8 +17,8 @@ module Parser
     end
   end
 
-  def document
-    Document.new(url).root if url
+  def get_document(url)
+    Document.new(url).root if url.present?
   end
 
 end

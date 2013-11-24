@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20131124163614) do
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "error"
+    t.boolean  "error",         default: false
     t.string   "error_message"
     t.boolean  "contract",      default: false
     t.boolean  "part_time",     default: false

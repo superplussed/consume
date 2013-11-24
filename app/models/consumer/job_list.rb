@@ -1,4 +1,4 @@
-class Scraper::JobList
+class Consumer::JobList
   include Attrio, MassAssignment, Parser
 
   CATEGORIES = ["eng", "sof", "web"]
@@ -12,9 +12,8 @@ class Scraper::JobList
   end
 
   def scrape    
-    urls.each do |category|
-      @url = create_url(category)
-      if document
+    urls.each do |url|
+      if document = get_document(url)
         document.css(".row").each do |row|
           pl = row.css(".pl")
           a_tag = parse_a_tag(pl)
@@ -32,6 +31,12 @@ class Scraper::JobList
   end
 
   def urls
+    @url.present? ? [@url] : create_urls
+  end
+
+private
+
+  def create_urls
     ary = []
     CATEGORIES.each do |category|
       if remote
@@ -43,9 +48,7 @@ class Scraper::JobList
     ary
   end
 
-private
-
   def city
-    City.where(subdomain: subdomain).first
+    @city ||= City.where(subdomain: subdomain).first
   end
 end

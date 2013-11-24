@@ -37,6 +37,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-given'
   gem 'rspec-rails'
+  gem 'rspec-sidekiq'
   gem 'capybara', '~> 2.0.1'
   gem 'launchy'
   gem 'database_cleaner', '~> 1.0.1'

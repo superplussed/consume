@@ -1,4 +1,4 @@
-class Scraper::JobListing
+class Consumer::JobListing
   include Parser, Attrio, MassAssignment
 
   define_attributes do 
@@ -8,18 +8,18 @@ class Scraper::JobListing
 
   def scrape 
     query.each do |job_listing|
-      @url = job_listing.absolute_url
-      doc = document
-      res = JobListing::Update.run(
-        id: job_listing.id,
-        body: body(doc),
-        email: email(doc),
-        compensation: compensation(doc),
-        posted_at: date(doc),
-        craigslist_id: craigslist_id(doc)
-      )
-      errors = res.success? ? "" : res.errors.message_list.join(", ")
-      job_listing.update_attributes(error: !res.success?, error_message: errors)
+      if document = get_document(job_listing.absolute_url)
+        res = JobListing::Update.run(
+          id: job_listing.id,
+          body: body(document),
+          email: email(document),
+          compensation: compensation(document),
+          posted_at: date(document),
+          craigslist_id: craigslist_id(document)
+        )
+        errors = res.success? ? "" : res.errors.message_list.join(", ")
+        job_listing.update_attributes(error: !res.success?, error_message: errors)
+      end
     end
   end
 
@@ -60,13 +60,18 @@ private
   end
 
   def date doc
-    if time_tag = doc.css("time")[0]
-      date_str = time_tag.attribute("datetime").to_s
-    elsif date_tag = doc.css("date")[0]
-      date_str = date_tag.text().to_s
-      date_str = date_str.gsub("EST", "").gsub("EDT", "").gsub("MDT", "").gsub("PDT", "").gsub("CST", "")
+    if el = doc.css("time")[0]
+      date_str = el.attribute("datetime").to_s
+    elsif el = doc.css("date")[0]
+      date_str = strip_time_zone(el.text().to_s)
     end
     Chronic.parse(date_str.squish).to_s if date_str
   end
 
+  def strip_time_zone str
+    ["EST", "EDT", "MDT", "PDT", "CST"].each do |tz|
+      str = str.gsub(tz, "")
+    end
+    str
+  end
 end
