@@ -91,6 +91,7 @@ GEM
     hirb (0.7.1)
     i18n (0.6.5)
     ice_cube (0.11.1)
+    iconv (1.0.3)
     jazz_hands (0.5.2)
       awesome_print (~> 1.2)
       coolline (>= 0.4.2)
@@ -280,6 +281,7 @@ DEPENDENCIES
   font-awesome-rails
   foundation-rails
   haml-rails
+  iconv
   jazz_hands
   jbuilder (~> 1.2)
   jquery-rails

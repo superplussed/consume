@@ -2,7 +2,7 @@ class JobListing < ActiveRecord::Base
   extend AdminConfig::JobListing
 
   belongs_to :city
-  attr_accessible :id, :remote, :error, :error_message, :body, :email, :compensation, :posted_at, :craigslist_id
+  attr_accessible :id, :city, :url, :title, :remote, :error, :error_message, :body, :email, :compensation, :posted_at, :craigslist_id
 
   scope :for_display, where("error = false AND body IS NOT NULL")
 
@@ -21,7 +21,7 @@ class JobListing < ActiveRecord::Base
   end
 
   def absolute_url
-    if url[0] == "/"
+    if url && url[0] == "/"
       "#{city.absolute_url}#{url}"
     else
       url
