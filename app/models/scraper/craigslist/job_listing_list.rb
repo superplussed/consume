@@ -14,15 +14,19 @@ class Scraper::Craigslist::JobListingList
   def scrape    
     CATEGORIES.each do |category|
       @url = create_url(category)
-      document.css(".row").each do |row|
-        pl = row.css(".pl")
-        a_tag = parse_a_tag(pl)
-        ::JobListing::Create.run!(
-          city: city,
-          url: a_tag[:href], 
-          title: a_tag[:text], 
-          remote: remote
-        )
+      if document
+        document.css(".row").each do |row|
+          pl = row.css(".pl")
+          a_tag = parse_a_tag(pl)
+          ::JobListing::Create.run!(
+            city: city,
+            url: a_tag[:href], 
+            title: a_tag[:text], 
+            remote: remote
+          )
+        end
+      else
+        city.update_attributes(error: true)
       end
     end
   end

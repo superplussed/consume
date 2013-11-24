@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124054433) do
+ActiveRecord::Schema.define(version: 20131124163614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20131124054433) do
     t.string   "abbrev"
     t.datetime "last_scrape_started_at"
     t.datetime "last_scrape_ended_at"
+    t.boolean  "error",                  default: false
+    t.text     "error_message"
   end
 
   create_table "job_listings", force: true do |t|
