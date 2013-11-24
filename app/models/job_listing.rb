@@ -2,7 +2,7 @@ class JobListing < ActiveRecord::Base
   extend AdminConfig::JobListing
 
   belongs_to :city
-  attr_accessible :remote, :error, :error_message, :body, :email, :compensation, :posted_at, :craigslist_id
+  attr_accessible :id, :remote, :error, :error_message, :body, :email, :compensation, :posted_at, :craigslist_id
 
   scope :for_display, where("error = false AND body IS NOT NULL")
 

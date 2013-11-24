@@ -18,7 +18,8 @@ class Scraper::Craigslist::JobListing
         posted_at: date(doc),
         craigslist_id: craigslist_id(doc)
       )
-      job_listing.update_attributes(error: !res.success?, error_message: res.errors.to_s)
+      errors = res.success? ? "" : res.errors.message_list.join(", ")
+      job_listing.update_attributes(error: !res.success?, error_message: errors)
     end
   end
 
@@ -45,8 +46,9 @@ private
   end
 
   def body doc
-    body = doc.css('#postingbody').to_s
-    body.present? ? body : doc.css(".userbody").to_s
+    body = doc.css('#postingbody').to_html()
+    body = doc.css(".userbody").to_html() unless (body && body.length > 0)
+    Encoding::Converter.new("iso-8859-1", "utf-8").convert(body)
   end
 
   def compensation doc

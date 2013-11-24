@@ -35,14 +35,14 @@ private
   end
 
   def get_remote_secure
-    Nokogiri::HTML(open(URI.parse(link.full),:ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
+    Nokogiri::HTML(open(URI.parse(link.full),:ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE), nil, 'utf-8')
   end
 
   def get_remote
-    Nokogiri.HTML(Net::HTTP.get(URI.parse(link.full)))
+    Nokogiri.HTML(Net::HTTP.get(URI.parse(link.full)), nil, 'utf-8')
   end
 
   def get_local
-    Nokogiri.HTML(File.open(path))
+    Nokogiri.HTML(File.open(path), nil, 'utf-8')
   end
 end
