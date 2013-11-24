@@ -38,7 +38,6 @@ private
   end
 
   def city
-    p "city"
     City.where(subdomain: subdomain).first
   end
 end

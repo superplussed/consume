@@ -5,7 +5,11 @@ module CityList
   end
 
   def self.next_in_queue
-    City.where(country: 'US').order(:last_scraped_at).first
+    if City.where(country: 'US', last_scrape_ended_at: nil).exists?
+      City.where(country: 'US', last_scrape_ended_at: nil).first
+    else
+      City.where(country: 'US').order(:last_scrape_ended_at).first
+    end
   end
 
 end 

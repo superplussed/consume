@@ -1,0 +1,218 @@
+en:
+  admin:
+    toggle:
+      disabled: 'Successfully toggled'
+      enabled: 'Successfully toggled'
+      error: 'There was an error'
+    home:
+      name: "3rdward.com"
+    pagination:
+      previous: "&laquo; Prev"
+      next: "Next &raquo;"
+      truncate: "…"
+    scrape: 
+      title: "Scrape %{model_label} '%{object_label}'"
+      menu: "Scrape"
+      breadcrumb: "Scrape"
+      link: "Scrape '%{object_label}'"
+      done: "scraped"
+    misc:
+      filter_date_format: "mm/dd/yy" # a combination of 'dd', 'mm' and 'yy' with any delimiter. No other interpolation will be done!
+      search: "Search"
+      filter: "Filter"
+      refresh: "Refresh"
+      show_all: "Show all"
+      add_filter: "Add filter"
+      bulk_menu_title: "Selected"
+      remove: "Remove"
+      add_new: "New"
+      chosen: "Chosen %{name}"
+      chose_all: "Choose all"
+      clear_all: "Clear all"
+      up: "Up"
+      down: "Down"
+      navigation: "Navigation"
+      navigation_static_label: "Links"
+      log_out: "Log out"
+      ago: "ago"
+    flash:
+      successful: "%{name} successfully %{action}"
+      error: "%{name} failed to be %{action}"
+      noaction: "No actions were taken"
+      model_not_found: "Model '%{model}' could not be found"
+      object_not_found: "%{model} with id '%{id}' could not be found"
+    table_headers:
+      model_name: "Model name"
+      last_used: "Last used"
+      records: "Records"
+      username: "User"
+      changes: "Changes"
+      created_at: "Date/Time"
+      item: "Item"
+      message: "Message"
+    actions:
+      render_to_html:
+        title: "Render %{model_label} '%{object_label}'"
+        menu: "Render"
+        breadcrumb: "Render"
+        link: "Render"
+        bulk_link: "Render"
+        done: "Rendered"
+      multi_upload:
+        title: "Multi Upload %{model_label} '%{object_label}'"
+        menu: "MultiUpload"
+        breadcrumb: "MultiUpload"
+        link: "MultiUpload"
+        bulk_link: "MultiUpload"
+        done: "Uploaded"
+      dashboard:
+        title: "Dashboard"
+        menu: "Dashboard"
+        breadcrumb: "Dashboard"
+      reports:
+        title: "Reports"
+        menu: "Reports"
+        breadcrumb: "Reports"
+      calendar:
+        title: "Calendar"
+        menu: "Calendar"
+        breadcrumb: "Calendar"
+      advisor_tools:
+        title: "Advisor Tools"
+        menu: "Advisor Tools"
+        breadcrumb: "Advisor Tools"
+      links:
+        title: "Links"
+        menu: "Links"
+        breadcrumb: "Links"
+      index:
+        title: "List of %{model_label_plural}"
+        menu: "List"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "Details for %{model_label} '%{object_label}'"
+        menu: "Show"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "View on Site"
+      multi_uploaded:
+        title: "Multiple Upload for %{model_label}"
+        menu: "MultiUpload"
+        breadcrumb: "MultiUpload"
+        link: "Multi Upload"
+        done: "uploaded"
+      new:
+        title: "New %{model_label}"
+        menu: "New"
+        breadcrumb: "New"
+        link: "Add"
+        done: "created"
+      edit:
+        title: "Edit %{model_label} '%{object_label}'"
+        menu: "Edit"
+        breadcrumb: "Edit"
+        link: "Edit"
+        done: "updated"
+      delete:
+        title: "Delete %{model_label} '%{object_label}'"
+        menu: "Delete"
+        breadcrumb: "Delete"
+        link: "Delete '%{object_label}'"
+        done: "deleted"
+      withdraw:
+        title: "Withdraw '%{object_label}'"
+        menu: "Withdraw"
+        breadcrumb: "Withdraw"
+        link: "Withdraw '%{object_label}'"
+        done: "Withdrew"
+      resend:
+        title: "Resend '%{object_label}'"
+        menu: "Resend"
+        breadcrumb: "Resend"
+        link: "Resend '%{object_label}'"
+        done: "Resent"
+      create_notification:
+        title: "Create Notification for '%{object_label}'"
+        menu: "Create Notification"
+        breadcrumb: "Create Notification"
+        link: "Create Notification '%{object_label}'"
+        done: "Notification Created"
+      create_notification_batch:
+        title: "Create Notification Batch for '%{object_label}'"
+        menu: "Create Notification Batch"
+        breadcrumb: "Create Notification Batch"
+        link: "Create Notification Batch '%{object_label}'"
+        done: "Notification Batch Created"
+      reverse_charge:
+        title: "Reverse Charge '%{object_label}'"
+        menu: "Reverse Charge"
+        breadcrumb: "Reverse Charge"
+        link: "Reverse Charge '%{object_label}'"
+        done: "Charge Reversed"
+      switch_user:
+        title: "Switch User '%{object_label}'"
+        menu: "Switch User"
+        breadcrumb: "Switch User"
+        link: "Switch User '%{object_label}'"
+        done: "User Switched"
+      check_in:
+        title: "Check In '%{object_label}'"
+        menu: "Check In"
+        breadcrumb: "Check In"
+        link: "Check In '%{object_label}'"
+        done: "checked in"
+      bulk_delete:
+        title: "Delete %{model_label_plural}"
+        menu: "Multiple delete"
+        breadcrumb: "Multiple delete"
+        bulk_link: "Delete selected %{model_label_plural}"
+      export:
+        title: "Export %{model_label_plural}"
+        menu: "Export"
+        breadcrumb: "Export"
+        link: "Export"
+        bulk_link: "Export selected %{model_label_plural}"
+        done: "exported"
+      history_index:
+        title: "History for %{model_label_plural}"
+        menu: "History"
+        breadcrumb: "History"
+      history_show:
+        title: "History for %{model_label} '%{object_label}'"
+        menu: "History"
+        breadcrumb: "History"
+    form:
+      cancel: "Cancel"
+      basic_info: "Basic info"
+      required: "Required"
+      optional: "Optional"
+      one_char: "character"
+      char_length_up_to: "length up to"
+      char_length_of: "length of"
+      save: "Save"
+      save_and_add_another: "Save / Add"
+      save_and_edit: "Save / Edit"
+      all_of_the_following_related_items_will_be_deleted: "? The following related items may be deleted or orphaned:"
+      are_you_sure_you_want_to_delete_the_object: "Are you sure you want to delete this %{model_name}"
+      confirmation: "Yes, I'm sure"
+      bulk_delete: "The following objects will be deleted, which may delete or orphan some of their related dependencies:"
+      new_model: "%{name} (new)"
+    export:
+      confirmation: "Export to %{name}"
+      select: "Select fields to export"
+      fields_from: "Fields from %{name}"
+      fields_from_associated: "Fields from associated %{name}"
+      display: "Display %{name}: %{type}"
+      options_for: "Options for %{name}"
+      empty_value_for_associated_objects: "<empty>"
+      click_to_reverse_selection: 'Click to reverse selection'
+      csv:
+        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "Encode to"
+        encoding_to_help: "Choose output encoding. Leave empty to let current input encoding untouched: (%{name})"
+        skip_header: "No header"
+        skip_header_help: "Do not output a header (no fields description)"
+        default_col_sep: ","
+        col_sep: "Column separator"
+        col_sep_help: "Leave blank for default ('%{value}')" # value is default_col_sep

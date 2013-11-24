@@ -1,3 +1,8 @@
+# Dir["#{Rails.root}/lib/rails_admin/config/actions/*.rb"].each {|file| require file }
+# Dir["#{Rails.root}/lib/rails_admin/config/fields/*.rb"].each {|file| require file }
+require "#{Rails.root}/lib/rails_admin/config/fields/types/link_to_edit"
+require "#{Rails.root}/lib/rails_admin/config/actions/scrape"
+
 RailsAdmin.config do |config|
 
   config.yell_for_non_accessible_fields = false
@@ -15,27 +20,18 @@ RailsAdmin.config do |config|
         statistics false
         pjax false
       end
-      index do
-      end
-      new do
-      end
-      export do
-      end
-      history_index do
-      end
+      index 
+      new 
+      export 
+      history_index 
       bulk_delete
       # member actions
-      edit do
-      end
-      show do
-      end
-      history_show do
-      end
-      delete do
-      end
-      show_in_app do
-      end
-      
+      edit 
+      show 
+      history_show 
+      delete 
+      show_in_app 
+      scrape
     end
   end
 end

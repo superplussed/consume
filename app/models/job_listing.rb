@@ -1,8 +1,11 @@
 class JobListing < ActiveRecord::Base
+  extend AdminConfig::JobListing
 
   belongs_to :city
 
   scope :for_display, where("error = false AND body IS NOT NULL")
+
+  admin_block.call(rails_admin)
 
   def self.scrape
     Scraper::Craigslist::JobListingList.new({}).scrape
