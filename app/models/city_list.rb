@@ -1,7 +1,7 @@
 module CityList
 
   def self.scrape
-    Scraper::Craigslist::CityList.new.scrape
+    Scraper::CityList.new.scrape
   end
 
   def self.scrape_all

@@ -3,18 +3,18 @@ require 'open-uri'
 require 'open_uri_redirections'
 require 'openssl'
 
-class Scraper::Document
+class Document
   include Attrio
 
   define_attributes do
     attr :path, String
     attr :error, String
     attr :root, Nokogiri::HTML
-    attr :link, Scraper::Link
+    attr :link, Link
   end
 
   def initialize path
-    @link = Scraper::Link.new(path)
+    @link = Link.new(path)
     if link.error
       @error = link.error
     else

@@ -18,7 +18,7 @@ module Parser
   end
 
   def document
-    Scraper::Document.new(url).root if url
+    Document.new(url).root if url
   end
 
 end

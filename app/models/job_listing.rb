@@ -9,11 +9,11 @@ class JobListing < ActiveRecord::Base
   admin_block.call(rails_admin)
 
   def self.scrape
-    Scraper::Craigslist::JobListingList.new({}).scrape
+    Scraper::JobList.new({}).scrape
   end
 
   def self.update_scrapes
-    Scraper::Craigslist::JobListing.new({}).scrape
+    Scraper::JobListing.new({}).scrape
   end
 
   def self.scrape_errors
@@ -24,7 +24,7 @@ class JobListing < ActiveRecord::Base
   end
 
   def scrape
-    Scraper::Craigslist::JobListing.new({id: self.id.to_s}).scrape
+    Scraper::JobListing.new({id: self.id.to_s}).scrape
   end
 
   def absolute_url

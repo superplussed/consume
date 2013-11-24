@@ -33,6 +33,15 @@ gem 'cancan', '1.6.10'
 gem 'rails_admin'
 gem 'open_uri_redirections'
 
+group :test do
+  gem 'rspec'
+  gem 'rspec-given'
+  gem 'rspec-rails'
+  gem 'capybara', '~> 2.0.1'
+  gem 'launchy'
+  gem 'database_cleaner', '~> 1.0.1'
+end
+
 group :development do
   gem 'zeus'
   gem 'jazz_hands'

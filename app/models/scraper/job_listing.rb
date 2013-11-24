@@ -1,4 +1,4 @@
-class Scraper::Craigslist::JobListing
+class Scraper::JobListing
   include Parser, Attrio, MassAssignment
 
   define_attributes do 

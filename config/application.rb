@@ -11,6 +11,8 @@ module Consume
 
     config.generators do |g|
       g.template_engine :haml
+      g.test_framework :rspec, :spec => true, :fixture => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
 
     # Settings in config/environments/* take precedence over those specified here.

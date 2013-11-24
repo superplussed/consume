@@ -20,7 +20,7 @@ module AdminConfig::City
           field :last_scrape_started_at
           field :last_scrape_ended_at
           field :job_listings
-          field :remote_urls
+          field :urls 
         end
       end
     }

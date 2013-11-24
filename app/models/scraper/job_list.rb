@@ -1,4 +1,4 @@
-class Scraper::Craigslist::JobListingList
+class Scraper::JobList
   include Attrio, MassAssignment, Parser
 
   CATEGORIES = ["eng", "sof", "web"]
@@ -12,7 +12,7 @@ class Scraper::Craigslist::JobListingList
   end
 
   def scrape    
-    CATEGORIES.each do |category|
+    urls.each do |category|
       @url = create_url(category)
       if document
         document.css(".row").each do |row|
@@ -31,15 +31,19 @@ class Scraper::Craigslist::JobListingList
     end
   end
 
-private
-
-  def create_url category
-    if remote
-       url = "#{city.absolute_url}/search/#{category}?addOne=telecommuting"
-     else
-       url = "#{city.absolute_url}/#{category}"
-     end
+  def urls
+    ary = []
+    CATEGORIES.each do |category|
+      if remote
+        ary.push("#{city.absolute_url}/search/#{category}?addOne=telecommuting")
+      else
+        ary.push("#{city.absolute_url}/#{category}")
+      end
+    end
+    ary
   end
+
+private
 
   def city
     City.where(subdomain: subdomain).first

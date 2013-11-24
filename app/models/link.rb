@@ -1,6 +1,6 @@
 require 'net/http'
 
-class Scraper::Link
+class Link
   include Attrio
 
   define_attributes do

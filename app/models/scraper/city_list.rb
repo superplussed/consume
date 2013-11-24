@@ -1,4 +1,4 @@
-class Scraper::Craigslist::CityList
+class Scraper::CityList
   include Parser
 
   def scrape

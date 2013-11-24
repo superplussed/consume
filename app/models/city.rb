@@ -8,7 +8,7 @@ class City < ActiveRecord::Base
 
   def scrape_job_listings
     self.update_attributes(last_scrape_started_at: DateTime.now)
-    Scraper::Craigslist::JobListingList.new(subdomain: self.subdomain).scrape
+    Scraper::JobList.new(subdomain: self.subdomain).scrape
     self.update_attributes(last_scrape_ended_at: DateTime.now)
   end
 
@@ -16,10 +16,8 @@ class City < ActiveRecord::Base
     "https://#{subdomain}.craigslist.org"
   end
 
-  def remote_urls
-    ["eng", "sof", "web"].map do |category|
-      "#{self.absolute_url}/search/#{category}?addOne=telecommuting"
-    end.join(",")
+  def urls
+    Scraper::JobList.new({subdomain: subdomain})
   end
 
 end
