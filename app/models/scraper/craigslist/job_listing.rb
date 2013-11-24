@@ -64,7 +64,7 @@ private
       date_str = time_tag.attribute("datetime").to_s
     elsif date_tag = doc.css("date")[0]
       date_str = date_tag.text().to_s
-      date_str = date_str.gsub("EST", "").gsub("EDT", "").gsub("MST", "").gsub("PST", "").gsub("CMT", "")
+      date_str = date_str.gsub("EST", "").gsub("EDT", "").gsub("MDT", "").gsub("PDT", "").gsub("CST", "")
     end
     Chronic.parse(date_str.squish).to_s if date_str
   end

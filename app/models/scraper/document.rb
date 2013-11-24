@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'openssl'
 
+
 class Scraper::Document
   include Attrio
 
@@ -35,7 +36,8 @@ private
   end
 
   def get_remote_secure
-    Nokogiri::HTML(open(URI.parse(link.full),:ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE), nil, 'utf-8')
+    file = open(URI.parse(link.full),:ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE, :allow_redirections => :all)
+    Nokogiri::HTML(file, nil, 'utf-8')
   end
 
   def get_remote

@@ -16,6 +16,13 @@ class JobListing < ActiveRecord::Base
     Scraper::Craigslist::JobListing.new({}).scrape
   end
 
+  def self.scrape_errors
+    JobListing.where(error: true).each do |job_listing|
+      job_listing.scrape
+      sleep (10.seconds)
+    end
+  end
+
   def scrape
     Scraper::Craigslist::JobListing.new({id: self.id.to_s}).scrape
   end

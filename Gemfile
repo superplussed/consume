@@ -31,6 +31,7 @@ gem 'sinatra'
 gem 'devise', '3.2.1'
 gem 'cancan', '1.6.10'
 gem 'rails_admin'
+gem 'open_uri_redirections'
 
 group :development do
   gem 'zeus'

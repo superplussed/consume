@@ -3,6 +3,7 @@
     %th.date-col Posted
     %th Title
     %th Comp
+    %th Location
     %th 
     %th 
     %th
@@ -16,6 +17,8 @@
       %td.compensation
         -if job_listing.compensation.present? && job_listing.compensation.match(/\d/)
           =job_listing.compensation
+
+      %td.location=job_listing.city.subdomain
 
       %td
         -if job_listing[:email].present?

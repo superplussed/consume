@@ -16,4 +16,10 @@ class City < ActiveRecord::Base
     "https://#{subdomain}.craigslist.org"
   end
 
+  def remote_urls
+    ["eng", "sof", "web"].map do |category|
+      "#{self.absolute_url}/search/#{category}?addOne=telecommuting"
+    end.join(",")
+  end
+
 end
