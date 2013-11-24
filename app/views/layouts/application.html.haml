@@ -10,5 +10,11 @@
     = csrf_meta_tags
   %body
     = render("shared/navigation")
-    %main= yield
-    = javascript_include_tag "application"
+
+    %main
+      -if notice || alert
+        .alerts
+          .notice= notice
+          .alert= alert
+      =yield
+  = javascript_include_tag "application"

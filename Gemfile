@@ -26,6 +26,9 @@ gem 'sidekiq', '2.15.0'
 gem 'sidetiq', '0.4.3'
 gem 'redis'
 gem 'sinatra'
+gem 'devise', '3.2.1'
+gem 'cancan', '1.6.10'
+gem 'rails_admin'
 
 group :development do
   gem 'zeus'
