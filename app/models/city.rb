@@ -2,6 +2,7 @@ class City < ActiveRecord::Base
   extend AdminConfig::City
 
   has_many :job_listings
+  attr_accessible :name, :abbrev, :state, :country, :last_scraped_started_at, :last_scraped_ended_at
 
   admin_block.call(rails_admin)
 

@@ -10,12 +10,7 @@ en:
       previous: "&laquo; Prev"
       next: "Next &raquo;"
       truncate: "…"
-    scrape: 
-      title: "Scrape %{model_label} '%{object_label}'"
-      menu: "Scrape"
-      breadcrumb: "Scrape"
-      link: "Scrape '%{object_label}'"
-      done: "scraped"
+    
     misc:
       filter_date_format: "mm/dd/yy" # a combination of 'dd', 'mm' and 'yy' with any delimiter. No other interpolation will be done!
       search: "Search"
@@ -51,6 +46,12 @@ en:
       item: "Item"
       message: "Message"
     actions:
+      scrape: 
+        title: "Scrape %{model_label} '%{object_label}'"
+        menu: "Scrape"
+        breadcrumb: "Scrape"
+        link: "Scrape '%{object_label}'"
+        done: "scraped"
       render_to_html:
         title: "Render %{model_label} '%{object_label}'"
         menu: "Render"

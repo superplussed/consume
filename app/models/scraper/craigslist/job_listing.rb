@@ -10,7 +10,7 @@ class Scraper::Craigslist::JobListing
     query.each do |job_listing|
       @url = job_listing.absolute_url
       doc = document
-      res = ::JobListing::Update.run(
+      res = JobListing::Update.run(
         id: job_listing.id,
         body: body(doc),
         email: email(doc),
@@ -18,7 +18,7 @@ class Scraper::Craigslist::JobListing
         posted_at: date(doc),
         craigslist_id: craigslist_id(doc)
       )
-      job_listing.update_attributes(error: true, error_message: res.errors.to_s) unless res.success?
+      job_listing.update_attributes(error: !res.success?, error_message: res.errors.to_s)
     end
   end
 
@@ -39,10 +39,9 @@ private
 
   def email doc
     el = doc.css(".replylink")
-    if el.present?
-      tag = parse_a_tag(el)
-      tag[:href] if tag
-    end
+    el = doc.css(".dateReplyBar a") unless el
+    tag = parse_a_tag(el)
+    tag[:href] if tag
   end
 
   def body doc
@@ -63,7 +62,7 @@ private
       date_str = time_tag.attribute("datetime").to_s
     elsif date_tag = doc.css("date")[0]
       date_str = date_tag.text().to_s
-      date_str = date_str.gsub("EST", "").gsub("MST", "").gsub("PST", "").gsub("CMT", "")
+      date_str = date_str.gsub("EST", "").gsub("EDT", "").gsub("MST", "").gsub("PST", "").gsub("CMT", "")
     end
     Chronic.parse(date_str.squish).to_s if date_str
   end

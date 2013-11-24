@@ -21,16 +21,14 @@ RailsAdmin.config do |config|
         pjax false
       end
       index 
+      show
+      edit
       new 
       export 
       history_index 
       bulk_delete
       # member actions
-      edit 
-      show 
-      history_show 
       delete 
-      show_in_app 
       scrape
     end
   end
