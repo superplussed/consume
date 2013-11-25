@@ -29,6 +29,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    ErrorLog.destroy_all
     Sidekiq::Worker.clear_all
     if example.metadata[:sidekiq] == :fake
       Sidekiq::Testing.fake!

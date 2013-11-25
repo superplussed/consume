@@ -17,7 +17,7 @@ class Consumer::JobListing
           posted_at: date(document),
           craigslist_id: craigslist_id(document)
         )
-        job_listing.error_logs.push(message: res.errors.message_list.join(", ")) unless res.success?
+        job_listing.error_logs.create(message: res.errors.message_list.join(", ")) unless res.success?
       end
     end
   end
