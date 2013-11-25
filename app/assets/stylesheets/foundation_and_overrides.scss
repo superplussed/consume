@@ -875,7 +875,7 @@ $pagination-link-pad: 3px 8px;
 // $tabs-content-margin-bottom: rem-calc(24);
 // $tabs-content-padding: $column-gutter/2;
 
-// $tabs-vertical-navigation-margin-bottom: 1.25rem;
+$tabs-vertical-navigation-margin-bottom: 0;
 
 //
 // THUMBNAILS
@@ -991,3 +991,11 @@ $pagination-link-pad: 3px 8px;
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 @import 'foundation';
+
+button, .button {
+  margin: 0;
+}
+
+button, .button.shallow {
+  padding: 7px 15px;
+}

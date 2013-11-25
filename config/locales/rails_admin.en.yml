@@ -5,7 +5,7 @@ en:
       enabled: 'Successfully toggled'
       error: 'There was an error'
     home:
-      name: "3rdward.com"
+      name: "C.ONSU.ME"
     pagination:
       previous: "&laquo; Prev"
       next: "Next &raquo;"

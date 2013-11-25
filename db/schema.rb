@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125004937) do
+ActiveRecord::Schema.define(version: 20131125125757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20131125004937) do
     t.text     "body"
     t.text     "email"
     t.boolean  "remote"
-    t.date     "posted_at"
-    t.string   "compensation"
+    t.datetime "posted_at"
+    t.text     "compensation"
     t.string   "craigslist_id"
     t.integer  "city_id"
     t.datetime "created_at"

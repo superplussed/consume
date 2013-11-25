@@ -9,7 +9,7 @@
     %thead
       %th.date-col Posted
       %th.title-col Title
-      %th Comp
+      %th.comp-col Compensation
       %th Location
       %th  
   %tbody  
@@ -27,20 +27,22 @@
         %td.location=job_listing.subdomain
 
         %td
-          .row-menu-bar
-            %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
-              %i.fa.fa-star.fa-lg
+          %ul.button-group{class: "round"}
+            %li
+              %a.button.shallow.secondary.tiny{href: "#"}
+                %i.fa.fa-star.fa-lg
 
-            %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
-              %i.fa.fa-ban.fa-lg
+            %li
+              %a.button.shallow.secondary.tiny{href: "#"}
+                %i.fa.fa-ban.fa-lg
 
-            -if job_listing[:email].present?
-              %a.icon{href: job_listing[:email]}
+            %li
+              %a.button.shallow.secondary.tiny{class: job_listing[:email].present? ? "" : "disabled", href: "#"}
                 %i.fa.fa-envelope-o.fa-lg
 
-          
-            %a.icon{href: job_listing.absolute_url, target: "_blank"}
-              %i.fa.fa-files-o.fa-lg
+            %li
+              %a.button.shallow.secondary.tiny{href: "#"}
+                %i.fa.fa-files-o.fa-lg
 
 = "#{count} Total Results"
 = paginate(job_listings)

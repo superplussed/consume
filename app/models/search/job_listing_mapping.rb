@@ -27,12 +27,35 @@ module Search::JobListingMapping
       search.query do |query|
         query.string @query_string
       end
+      search.sort do
+        by :id, 'desc'
+      end
     end
+  end
+
+  def test_search
+    Tire.search 'job_listings' do
+       query do
+         string '*'
+       end
+
+       # filter :terms, :tags => ['ruby']
+
+       sort { by :title, 'desc' }
+
+       # facet 'global-tags', :global => true do
+       #   terms :tags
+       # end
+
+       # facet 'current-tags' do
+       #   terms :tags
+       # end
+     end
   end
 
   def index_all
     ::JobListing.unscoped.index.delete
-    ::JobListing.unscoped.index.import(JobListing.unscoped.all)
+    ::JobListing.unscoped.index.import(JobListing.where.not(body: nil).to_a)
   end
 
   def index_subset job_listings

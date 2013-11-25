@@ -2,7 +2,7 @@
   %h2=job_listing.title
 
 .row
-  menu
+  %menu
     %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
       %i.fa.fa-star.fa-lg.bookmark-inactive
 
@@ -21,9 +21,15 @@
 
 .row
   - if job_listing.email.present?
-    .button=link_to 'Email', job_listing.email
+    %a{href: job_listing.email}
+      .button Email
 
-  .button=link_to 'Craigslist', job_listing.absolute_url
+  %a{href: job_listing.absolute_url}
+    .button View on Craigslist
 
-  .button= link_to 'Scrape', job_listing_scrape_path(job_listing.id)
-  .button= link_to 'View All', job_listings_path
+  %a{href: job_listings_path}
+    .button View All
+
+  - if current_user.admin?
+    %a{href: job_listing_scrape_path(job_listing.id)}
+      .button.alert Re-scrape

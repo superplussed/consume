@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require rails-timeago-all
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

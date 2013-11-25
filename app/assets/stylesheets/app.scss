@@ -2,16 +2,19 @@ body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   14px;
-  line-height: 18px;
+  font-size:   16px;
+  line-height: 20px;
 }
 
 a, a:hover {
   color: #333;
 }
 
+a:visited {
+  color:rgb(153, 153, 154);
+}
+
 .button {
-  border-radius: 3px;
   a, a:hover {
     color: white;
   }
@@ -22,10 +25,19 @@ main {
 }
 
 .date-col {
-  width: 80px;
+  max-width: 80px;
+}
+.comp-col, .compensation {
+  max-width: 140px;
 }
 .date, .location, .compensation {
   font-size: 12px;
+}
+
+.compensation {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .body {
@@ -61,4 +73,8 @@ main {
 
 .title-col {
   width: 500px;
+}
+
+.disabled {
+  color: #ccc!important;
 }
