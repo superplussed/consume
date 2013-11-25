@@ -28,19 +28,19 @@
 
         %td
           %ul.button-group{class: "round"}
-            %li
+            %li.has-tip{"data-tooltip" => "", title: "Bookmark"}
               %a.button.shallow.secondary.tiny{href: "#"}
                 %i.fa.fa-star.fa-lg
 
-            %li
+            %li.has-tooltip{"data-tooltip" => "", title: "Hide"}
               %a.button.shallow.secondary.tiny{href: "#"}
                 %i.fa.fa-ban.fa-lg
 
-            %li
+            %li.has-tooltip{"title" => job_listing[:email].present? ? "Email About Job" : "", "data-tooltip" => job_listing[:email].present?}
               %a.button.shallow.secondary.tiny{class: job_listing[:email].present? ? "" : "disabled", href: "#"}
                 %i.fa.fa-envelope-o.fa-lg
 
-            %li
+            %li.has-tooltip{"data-tooltip" => "", title: "View on Craigslist"}
               %a.button.shallow.secondary.tiny{href: "#"}
                 %i.fa.fa-files-o.fa-lg
 
