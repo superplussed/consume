@@ -9,15 +9,20 @@ class Consumer::JobListing
   def scrape 
     query.each do |job_listing|
       if document = get_document(job_listing, job_listing.absolute_url)
-        res = JobListing::Update.run(
-          id: job_listing.id,
-          body: body(document),
-          email: email(document),
-          compensation: compensation(document),
-          posted_at: date(document),
-          craigslist_id: craigslist_id(document)
-        )
-        job_listing.error_logs.create(message: res.errors.message_list.join(", ")) unless res.success?
+        body = body(document)
+        if JobListing.where(body: body).where.not(id: job_listing.id).exists?
+          JobListing::MarkDuplicate.run!(job_listing: job_listing)
+        else
+          res = JobListing::Update.run(
+            id: job_listing.id,
+            body: body,
+            email: email(document),
+            compensation: compensation(document),
+            posted_at: date(document),
+            craigslist_id: craigslist_id(document)
+          )
+          job_listing.error_logs.create(message: res.errors.message_list.join(", ")) unless res.success?
+        end
       end
     end
   end

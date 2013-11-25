@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125125757) do
+ActiveRecord::Schema.define(version: 20131125141342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,9 +52,11 @@ ActiveRecord::Schema.define(version: 20131125125757) do
     t.boolean  "contract",      default: false
     t.boolean  "part_time",     default: false
     t.integer  "loggable_id"
+    t.boolean  "duplicate",     default: false
   end
 
   add_index "job_listings", ["city_id", "posted_at"], name: "index_job_listings_on_city_id_and_posted_at", using: :btree
+  add_index "job_listings", ["duplicate"], name: "index_job_listings_on_duplicate", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -81,6 +83,12 @@ ActiveRecord::Schema.define(version: 20131125125757) do
   end
 
   add_index "roles_users", ["role_id", "user_id"], name: "ru_comp_1", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.boolean "rescrape_job_listings",            default: false
+    t.integer "seconds_between_job_list_scrapes", default: 10
+    t.boolean "monitor_job_lists",                default: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,5 +1,5 @@
 class JobListingsController < ApplicationController
-  expose(:job_listing) {JobListing.find(params[:id])}
+  expose(:job_listing)
   expose(:job_listings) do
     if params["query"]
       JobListing.search(params["query"])

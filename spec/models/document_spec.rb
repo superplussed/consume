@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Document do
 
-  let(:basic) { Document.new("#{Rails.root}/spec/pages/craigslist/job_listing.html") }
+  let(:basic) { Document.new("#{Rails.root}/spec/pages/craigslist/11-24-2013/job_listing.html") }
   let(:chartbeat) { Document.new("http://chartbeat.com/jobs") }
   let(:google) { Document.new("http://www.google.com") }
 

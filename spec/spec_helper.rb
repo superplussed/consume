@@ -22,6 +22,7 @@ RSpec.configure do |config|
 
     Sidekiq::Testing.fake!
     City.create(subdomain: "newyork", name: "newyork", state: "New York", country: "US", abbrev: "")
+    Settings.create
   end
 
   config.after(:suite) do

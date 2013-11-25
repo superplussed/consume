@@ -6,7 +6,7 @@ class JobListing < ActiveRecord::Base
 
   belongs_to :city
   has_many :error_logs, as: :loggable
-  attr_accessible :id, :city, :url, :title, :remote, :body, :email, :compensation, :posted_at, :craigslist_id
+  attr_accessible :duplicate, :id, :city, :url, :title, :remote, :body, :email, :compensation, :posted_at, :craigslist_id
 
   delegate :subdomain, to: :city
 

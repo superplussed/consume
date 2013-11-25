@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Consumer::JobList, sidekiq: :inline do
+describe Consumer::JobListing, sidekiq: :inline do
 
 
 end
