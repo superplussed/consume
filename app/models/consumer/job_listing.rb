@@ -47,7 +47,7 @@ private
   def body doc
     body = doc.css('#postingbody').to_html()
     body = doc.css(".userbody").to_html() unless (body && body.length > 0)
-    Encoding::Converter.new("iso-8859-1", "utf-8").convert(body)
+    force_encode(body)
   end
 
   def compensation doc

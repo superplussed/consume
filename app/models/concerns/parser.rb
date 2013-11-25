@@ -11,6 +11,10 @@ module Parser
     end
   end
 
+  def force_encode str
+    Encoding::Converter.new("iso-8859-1", "utf-8").convert(str)
+  end
+
   def match str, regex
     if res = str.match(regex)
       res[1] 

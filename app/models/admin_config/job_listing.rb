@@ -11,8 +11,6 @@ module AdminConfig::JobListing
           field :title
           field :city
           field :url
-          field :error
-          field :error_message
         end
       end
     }

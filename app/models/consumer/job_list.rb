@@ -20,7 +20,7 @@ class Consumer::JobList
           ::JobListing::Create.run!(
             city: city,
             url: a_tag[:href], 
-            title: a_tag[:text], 
+            title: force_encode(a_tag[:text]), 
             remote: remote
           )
         end
