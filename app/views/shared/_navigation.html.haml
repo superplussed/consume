@@ -4,15 +4,16 @@
       %a{href: "/"}
         C.ONSU.ME
 
-  %section.top-bar-section
-    %ul.right
-      %li.has-dropdown
-        %a{href: "#"}=current_user.email
-        %ul.dropdown
-          - if current_user.admin?
+  - if current_user
+    %section.top-bar-section
+      %ul.right
+        %li.has-dropdown
+          %a{href: "#"}=current_user.email
+          %ul.dropdown
+            - if current_user.admin?
+              %li
+                %a{href: "/admin"} Administration
             %li
-              %a{href: "/admin"} Administration
-          %li
-            %a{href: "#"} Preferences
-          %li
-            %a{href: "#"} Sign Out
+              %a{href: "#"} Preferences
+            %li
+              %a{href: "#"} Sign Out

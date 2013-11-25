@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
+  attr_accessible :email, :password, :password_confirmation
+
   def admin?
     roles.where(name: "admin").exists?
   end
