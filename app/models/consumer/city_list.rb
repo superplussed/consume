@@ -2,7 +2,7 @@ class Consumer::CityList
   include Parser
 
   def scrape
-    if document = get_document("http://www.craigslist.org/about/sites")
+    if document = get_document(nil, "http://www.craigslist.org/about/sites")
       document.css(".colmask").each_with_index do |col, col_index|
         col.css(".box").each do |box|
           box.css("ul").each_with_index do |ul, ul_index|

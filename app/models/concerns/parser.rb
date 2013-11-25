@@ -17,8 +17,13 @@ module Parser
     end
   end
 
-  def get_document(url)
-    Document.new(url).root if url.present?
+  def get_document(obj, url)
+    begin
+      Document.new(url).root if url.present?
+    rescue Exception => e
+      obj.error_logs.create(message: e.message) if obj
+      nil
+    end
   end
 
 end

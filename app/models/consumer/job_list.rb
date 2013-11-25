@@ -13,7 +13,7 @@ class Consumer::JobList
 
   def scrape    
     urls.each do |url|
-      if document = get_document(url)
+      if document = get_document(city, url)
         document.css(".row").each do |row|
           pl = row.css(".pl")
           a_tag = parse_a_tag(pl)
@@ -24,8 +24,6 @@ class Consumer::JobList
             remote: remote
           )
         end
-      else
-        city.update_attributes(error: true)
       end
     end
   end

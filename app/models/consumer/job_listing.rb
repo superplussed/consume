@@ -8,7 +8,7 @@ class Consumer::JobListing
 
   def scrape 
     query.each do |job_listing|
-      if document = get_document(job_listing.absolute_url)
+      if document = get_document(job_listing, job_listing.absolute_url)
         res = JobListing::Update.run(
           id: job_listing.id,
           body: body(document),
@@ -17,8 +17,7 @@ class Consumer::JobListing
           posted_at: date(document),
           craigslist_id: craigslist_id(document)
         )
-        errors = res.success? ? "" : res.errors.message_list.join(", ")
-        job_listing.update_attributes(error: !res.success?, error_message: errors)
+        job_listing.error_logs.push(message: res.errors.message_list.join(", ")) unless res.success?
       end
     end
   end

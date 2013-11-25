@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124163614) do
+ActiveRecord::Schema.define(version: 20131125004937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,20 @@ ActiveRecord::Schema.define(version: 20131124163614) do
     t.string   "name"
     t.string   "state"
     t.string   "country"
-    t.date     "last_scraped_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "abbrev"
     t.datetime "last_scrape_started_at"
     t.datetime "last_scrape_ended_at"
-    t.boolean  "error",                  default: false
-    t.text     "error_message"
+    t.integer  "loggable_id"
+  end
+
+  create_table "error_logs", force: true do |t|
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
   end
 
   create_table "job_listings", force: true do |t|
@@ -43,14 +49,12 @@ ActiveRecord::Schema.define(version: 20131124163614) do
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "error",         default: false
-    t.string   "error_message"
     t.boolean  "contract",      default: false
     t.boolean  "part_time",     default: false
+    t.integer  "loggable_id"
   end
 
   add_index "job_listings", ["city_id", "posted_at"], name: "index_job_listings_on_city_id_and_posted_at", using: :btree
-  add_index "job_listings", ["error"], name: "index_job_listings_on_error", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
