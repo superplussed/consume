@@ -24,11 +24,12 @@ main {
 .date-col {
   width: 80px;
 }
-.date, .location {
+.date, .location, .compensation {
   font-size: 12px;
 }
 
 .body {
+  font-family: 'Source Sans Pro', sans-serif;
   border: 1px solid gray;
   padding: 20px;
   margin-bottom: 20px;
@@ -43,4 +44,21 @@ main {
   border: 1px solid gray;
   border-radius: 3px;
   padding: 3px;
+}
+
+#consume-logo {
+  line-height: 45px;
+  font-size: 1.0625rem;
+  margin: 0;
+  font-weight: 900;
+  color: white;
+  padding: 0px 25px;
+  font-size: 25px;
+  a {
+    color: white;
+  }
+}
+
+.title-col {
+  width: 500px;
 }

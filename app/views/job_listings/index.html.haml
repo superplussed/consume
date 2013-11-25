@@ -1,8 +1,14 @@
+%menu
+  %fieldset
+    %form
+      %legend Search
+      %input.search-input{placeholder: "Ex: Java, Ruby, Freelance", type: "text", name: "query"}/
+
 %table
   %tr
     %thead
       %th.date-col Posted
-      %th Title
+      %th.title-col Title
       %th Comp
       %th Location
       %th  
@@ -18,7 +24,7 @@
           -if job_listing.compensation.present? && job_listing.compensation.match(/\d/)
             =job_listing.compensation
 
-        %td.location=job_listing.city.subdomain
+        %td.location=job_listing.subdomain
 
         %td
           .row-menu-bar

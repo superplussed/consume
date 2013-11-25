@@ -8,6 +8,8 @@ class JobListing < ActiveRecord::Base
   has_many :error_logs, as: :loggable
   attr_accessible :id, :city, :url, :title, :remote, :body, :email, :compensation, :posted_at, :craigslist_id
 
+  delegate :subdomain, to: :city
+
   scope :for_display, -> { where("body IS NOT NULL") }
 
   admin_block.call(rails_admin)

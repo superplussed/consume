@@ -1,7 +1,17 @@
 class JobListingsController < ApplicationController
   expose(:job_listing) {JobListing.find(params[:id])}
-  expose(:job_listings) {JobListing.for_display.order(posted_at: :desc).page(page)}
+  expose(:job_listings) do
+    if params["query"]
+      JobListing.search(params["query"])
+    else
+      JobListing.for_display.order(posted_at: :desc).page(page)
+    end
+  end
   expose(:count) {JobListing.for_display.count}
+
+  def index
+
+  end
 
   def scrape
     job_listing.scrape
