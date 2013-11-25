@@ -1,13 +1,13 @@
 class JobListingsController < ApplicationController
+  expose(:count) {JobListing.for_display.count}
   expose(:job_listing)
-  expose(:job_listings) do
+  expose(:job_listings) {
     if params["query"]
       JobListing.search(params["query"])
     else
       JobListing.for_display.order(posted_at: :desc).page(page)
     end
-  end
-  expose(:count) {JobListing.for_display.count}
+  }
 
   def index
 

@@ -26,6 +26,11 @@ class Link
     url[0] == "/"
   end
 
+  def query_string
+    match = @url.match(/.*(\?.*)/)
+    match[1] if match
+  end
+
   def last_path_fragment
     match = path.match(/.*\/(.*)/)
     match[1] if match
@@ -65,7 +70,7 @@ class Link
   end
 
   def full
-    "#{root}#{path}"
+    "#{root}#{path}#{query_string}"
   end
 
 private

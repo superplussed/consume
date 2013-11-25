@@ -13,6 +13,7 @@ class Consumer::JobList
 
   def scrape    
     urls.each do |url|
+      p url
       if document = get_document(city, url)
         document.css(".row").each do |row|
           pl = row.css(".pl")

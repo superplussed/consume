@@ -13,4 +13,9 @@ describe Link do
     Then  { link.url =~ /http/ }
     And  { link.secure? == false }
   end
+
+  describe "remote.com/page?querystring" do
+    Given (:link) { Link.new("remote.com/page?querystring")}
+    Then  { link.full =~ /\?querystring/ }
+  end
 end

@@ -10,7 +10,7 @@ class JobListing < ActiveRecord::Base
 
   delegate :subdomain, to: :city
 
-  scope :for_display, -> { where("body IS NOT NULL") }
+  scope :for_display, -> { where("duplicate=false AND body IS NOT NULL") }
 
   admin_block.call(rails_admin)
 
