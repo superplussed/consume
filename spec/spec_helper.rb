@@ -18,20 +18,13 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.start
-
-    Sidekiq::Testing.fake!
+    DatabaseCleaner.clean
     City.create(subdomain: "newyork", name: "newyork", state: "New York", country: "US", abbrev: "")
     Settings.create
   end
 
-  config.after(:suite) do
-    DatabaseCleaner.clean
-  end
-
   config.before(:each) do
-    ErrorLog.destroy_all
-    Sidekiq::Worker.clear_all
+    DatabaseCleaner.start
     if example.metadata[:sidekiq] == :fake
       Sidekiq::Testing.fake!
     elsif example.metadata[:sidekiq] == :inline
@@ -39,7 +32,12 @@ RSpec.configure do |config|
     else
       Sidekiq::Testing.fake!
     end
+    Sidekiq::Worker.clear_all
   end
+
+   config.after(:each) do
+     DatabaseCleaner.clean
+   end
 
   config.include Devise::TestHelpers, :type => :controller
 end

@@ -7,6 +7,7 @@ describe Consumer::JobList, sidekiq: :inline do
     let (:job_list_1_job) { JobListHelper.fetch("job_list_1_job")}
     let (:job_list_1_job_error) { JobListHelper.fetch("job_list_1_job_error")}
     let (:job_list_2_jobs) { JobListHelper.fetch("job_list_2_jobs")}
+    let (:job_list_2_duplicate_jobs) { JobListHelper.fetch("job_list_2_duplicate_jobs")}
     let (:bad_url) { JobListHelper.fetch("bad_url")}
 
     describe "Error-free HTML files" do
@@ -40,8 +41,20 @@ describe Consumer::JobList, sidekiq: :inline do
     describe "Error in HTML" do
       before(:each) { job_list_1_job_error.scrape }
 
-      it "should create an error log" do
-        ErrorLog.count == 1
+      it "should create an error log", focus: true do
+        ErrorLog.count.should == 1
+      end
+    end
+
+    describe "2 listings with duplicate bodies" do
+      before(:each) { job_list_2_duplicate_jobs.scrape }
+
+      it "should create 2 jobs" do
+        JobListing.count.should == 2
+      end
+
+      it "should create 1 job with a duplicate designation" do
+        JobListing.where(duplicate: true).count.should == 1
       end
     end
 

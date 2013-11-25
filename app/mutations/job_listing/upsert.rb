@@ -15,7 +15,7 @@ class JobListing::Upsert < Mutations::Command
     job_listing = JobListing.where(url: url).first
     exists = !!job_listing
 
-    if !exists
+    unless exists
       job_listing = city.job_listings.create(inputs) 
     end
     
