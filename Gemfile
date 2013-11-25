@@ -32,6 +32,7 @@ gem 'devise', '3.2.1'
 gem 'cancan', '1.6.10'
 gem 'rails_admin'
 gem 'open_uri_redirections'
+gem 'tire', '0.6.1'
 
 group :test do
   gem 'rspec'

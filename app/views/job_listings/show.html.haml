@@ -2,9 +2,17 @@
   %h2=job_listing.title
 
 .row
+  menu
+    %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
+      %i.fa.fa-star.fa-lg.bookmark-inactive
+
+
+.row
   %ul
-    %li=job_listing.id
-    %li=time_ago_in_words(job_listing.posted_at)
+    %li
+      posted
+      =time_ago_in_words(job_listing.posted_at)
+      ago
     - if job_listing.compensation
       %li=job_listing.compensation
     %li=job_listing.city.name.titlecase

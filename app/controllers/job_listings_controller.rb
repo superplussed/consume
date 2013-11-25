@@ -3,18 +3,6 @@ class JobListingsController < ApplicationController
   expose(:job_listings) {JobListing.for_display.order(posted_at: :desc).page(page)}
   expose(:count) {JobListing.for_display.count}
 
-  def update
-    respond_to do |format|
-      if job_listing.update(job_listing_params)
-        format.html { redirect_to @job_listing, notice: 'Job listing was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @job_listing.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def scrape
     job_listing.scrape
     redirect_to job_listing

@@ -1,37 +1,40 @@
 %table
   %tr
-    %th.date-col Posted
-    %th Title
-    %th Comp
-    %th Location
-    %th 
-    %th 
-    %th
+    %thead
+      %th.date-col Posted
+      %th Title
+      %th Comp
+      %th Location
+      %th  
+  %tbody  
 
-  - job_listings.each do |job_listing|
-    %tr
-      %td.date= time_ago(job_listing.posted_at)
+    - job_listings.each do |job_listing|
+      %tr
+        %td.date= time_ago(job_listing.posted_at)
 
-      %td= link_to job_listing[:title], job_listing_path(job_listing.id)
+        %td=link_to job_listing[:title], job_listing_path(job_listing.id)
 
-      %td.compensation
-        -if job_listing.compensation.present? && job_listing.compensation.match(/\d/)
-          =job_listing.compensation
+        %td.compensation
+          -if job_listing.compensation.present? && job_listing.compensation.match(/\d/)
+            =job_listing.compensation
 
-      %td.location=job_listing.city.subdomain
+        %td.location=job_listing.city.subdomain
 
-      %td
-        -if job_listing[:email].present?
-          %a.icon{href: job_listing[:email]}
-            %i.fa.fa-envelope-o.fa-lg
+        %td
+          .row-menu-bar
+            %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
+              %i.fa.fa-star.fa-lg
 
-      %td
-        %a.icon{href: job_listing.absolute_url, target: "_blank"}
-          %i.fa.fa-files-o.fa-lg
+            %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
+              %i.fa.fa-ban.fa-lg
 
-      %td
-        %a.icon{href: "job_listings/#{job_listing.id}/scrape"}
-          %i.fa.fa-wrench.fa-lg
+            -if job_listing[:email].present?
+              %a.icon{href: job_listing[:email]}
+                %i.fa.fa-envelope-o.fa-lg
+
+          
+            %a.icon{href: job_listing.absolute_url, target: "_blank"}
+              %i.fa.fa-files-o.fa-lg
 
 = "#{count} Total Results"
 = paginate(job_listings)

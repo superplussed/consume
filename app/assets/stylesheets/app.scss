@@ -33,3 +33,14 @@ main {
   padding: 20px;
   margin-bottom: 20px;
 }
+
+.bookmark-inactive:hover {
+  color: red;
+}
+
+.row-menu-bar {
+  width: 100px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 3px;
+}

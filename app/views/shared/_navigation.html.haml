@@ -3,3 +3,13 @@
     %li.name
       %h1
         %a{href: "/"} C.ONSU.ME
+
+  %section.top-bar-section
+    %ul.right
+      %li.has-dropdown
+        %a{href: "#"}=current_user.email
+        %ul.dropdown
+          %li
+            %a{href: "#"} Preferences
+          %li
+            %a{href: "#"} Sign Out
