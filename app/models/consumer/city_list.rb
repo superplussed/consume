@@ -7,13 +7,16 @@ class Consumer::CityList
         col.css(".box").each do |box|
           box.css("ul").each_with_index do |ul, ul_index|
             ul.css("li").each do |li|
-              a_tag = parse_a_tag(li)
-              ::City::Create.run!(
-                subdomain: match(a_tag[:href], "http:\/\/(.*).craigslist"), 
-                name: a_tag[:text], 
-                state: states(box)[ul_index].to_s, 
-                country: countries[col_index].to_s
-              )
+              country = countries(document)[col_index].to_s
+              if country == 'US'
+                a_tag = parse_a_tag(li)
+                ::City::Create.run!(
+                  subdomain: match(a_tag[:href], "http:\/\/(.*).craigslist"), 
+                  name: a_tag[:text], 
+                  state: states(box)[ul_index].to_s, 
+                  country: country
+                )
+              end
             end
           end
         end
@@ -23,8 +26,8 @@ class Consumer::CityList
 
 private
 
-  def countries
-    @countries ||= document.css("h1").map{|country| country.text().to_s}
+  def countries el
+    @countries ||= el.css("h1").map{|country| country.text().to_s}
   end
 
   def states el
