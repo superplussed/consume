@@ -57,7 +57,7 @@ private
 
   def compensation doc
     doc.css(".blurbs li").each do |blurb|
-      match = blurb.text().to_s.strip.match("Compensation:(.*)")
+      match = force_encode(blurb.text().to_s).strip.match("Compensation:(.*)")
       return match[1].strip if match
     end
     nil

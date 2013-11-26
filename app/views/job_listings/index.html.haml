@@ -37,7 +37,7 @@
                 %i.fa.fa-ban.fa-lg
 
             %li.has-tooltip{"title" => job_listing[:email].present? ? "Email About Job" : "", "data-tooltip" => job_listing[:email].present?}
-              %a.button.shallow.secondary.tiny{class: job_listing[:email].present? ? "" : "disabled", href: "#"}
+              %a.button.shallow.secondary.tiny{class: job_listing[:email].present? ? "" : "disabled", href: job_listing.email, target: "_blank"}
                 %i.fa.fa-envelope-o.fa-lg
 
             %li.has-tooltip{"data-tooltip" => "", title: "View on Craigslist"}

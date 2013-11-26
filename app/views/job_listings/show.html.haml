@@ -21,7 +21,7 @@
 
 .row
   - if job_listing.email.present?
-    %a{href: job_listing.email}
+    %a{href: job_listing.email, target: "_blank"}
       .button Email
 
   %a{href: job_listing.absolute_url}
@@ -30,6 +30,6 @@
   %a{href: job_listings_path}
     .button View All
 
-  - if current_user.admin?
+  - if current_user && current_user.admin?
     %a{href: job_listing_scrape_path(job_listing.id)}
       .button.alert Re-scrape
