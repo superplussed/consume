@@ -8,7 +8,7 @@ class Consumer::CityList
           box.css("ul").each_with_index do |ul, ul_index|
             ul.css("li").each do |li|
               country = countries(document)[col_index].to_s
-              if country == 'US'
+              if country == 'Canada' || country == 'US'
                 a_tag = parse_a_tag(li)
                 ::City::Create.run!(
                   subdomain: match(a_tag[:href], "http:\/\/(.*).craigslist"), 

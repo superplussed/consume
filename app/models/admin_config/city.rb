@@ -10,11 +10,13 @@ module AdminConfig::City
           end
           field :name
           field :subdomain
+          field :skip
           field :last_scrape_started_at
           field :last_scrape_ended_at
         end
         show do
           field :id
+          field :skip
           field :name
           field :subdomain
           field :last_scrape_started_at

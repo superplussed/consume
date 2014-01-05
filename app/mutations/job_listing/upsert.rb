@@ -16,10 +16,14 @@ class JobListing::Upsert < Mutations::Command
     exists = !!job_listing
 
     unless exists
-      job_listing = city.job_listings.create(inputs) 
+      job_listing = city.job_listings.create(
+        url: url,
+        title: title,
+        remote: remote
+      ) 
     end
     
-    if !exists || Settings.first.rescrape_job_listings
+    if !exists || Settings.rescrape_job_listings
       JobListingWorker.perform_async(job_listing.id)
     end
   end

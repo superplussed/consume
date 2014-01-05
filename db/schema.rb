@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125141342) do
+ActiveRecord::Schema.define(version: 20131129172619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20131125141342) do
     t.datetime "last_scrape_started_at"
     t.datetime "last_scrape_ended_at"
     t.integer  "loggable_id"
+    t.boolean  "skip",                   default: false
   end
 
   create_table "error_logs", force: true do |t|

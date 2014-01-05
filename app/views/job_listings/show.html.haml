@@ -14,7 +14,10 @@
       ago
     - if job_listing.compensation
       %li=job_listing.compensation
-    %li=job_listing.city.name.titlecase
+    %li
+      =job_listing.city.name.titlecase
+      , 
+      =job_listing.city.state.titlecase
 
 .row
   %section.body= job_listing.body.html_safe

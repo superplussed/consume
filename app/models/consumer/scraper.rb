@@ -5,16 +5,16 @@ class Consumer::Scraper
   end
 
   def job_listings
-    City.where(country: 'US').order(:last_scrape_ended_at).each do |city|
+    City.where(skip: false).order(:last_scrape_ended_at).each do |city|
       city.scrape
-      sleep(Settings.first.seconds_between_job_list_scrapes)
+      sleep(Settings.seconds_between_job_list_scrapes)
     end
   end
 
   def retry
     JobListing.where(error: true).each do |job_listing|
       job_listing.scrape
-      sleep(Settings.first.seconds_between_job_list_scrapes)
+      sleep(Settings.seconds_between_job_list_scrapes)
     end
   end
 end

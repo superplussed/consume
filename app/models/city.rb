@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
 
   has_many :job_listings
   has_many :error_logs, as: :loggable
-  attr_accessible :subdomain, :updated_at, :created_at, :name, :abbrev, :state, :country, :last_scrape_started_at, :last_scrape_ended_at
+  attr_accessible :skip, :subdomain, :updated_at, :created_at, :name, :abbrev, :state, :country, :last_scrape_started_at, :last_scrape_ended_at
 
   admin_block.call(rails_admin)
 

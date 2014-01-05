@@ -1,0 +1,17 @@
+Hello,
+
+I came across your job listing on ______________ and thought that my skills are a good match for what you are looking for. 
+
+As a brief introduction, I'm a full-stack developer and designer based in Brooklyn, NY.  I have the ability to be involved with every aspect of implementing a website, all the way from mockups and UX design, to graphic design, to full-stack implementation, to deployment.  I've successfully bootstrapped a start-up to a successful exit, and have a great deal of insight in product development. 
+
+My backend tech stack tends to be Ruby on Rails, though I also have experience with Node.js.  I've experience with DBs (and data stores) such as MySQL, Postgres, Mongo, Redis, and Elastic Search.  I practice TDD using tools such as Rspec, Cucumber, and Mocha.
+
+On the frontend: My preference is Angular.js, and I've also worked Backbone and Meteor.  I'm a fan of pre-processed languages like Coffeescript, Sass, and HAML, but have no problem writing native code.  I am very well-versed in current best practices such as building responsive mobile-friendly websites, and coding pixel perfect CSS and HTML5.  
+
+My portfolio can be seen here: http://eatingthe.com/
+My github account: https://github.com/superplussed
+
+Let me know if you'd like to discuss further, and I look forward to hearing from you!
+
+Jeremy
+347-699-3130

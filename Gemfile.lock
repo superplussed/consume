@@ -97,11 +97,6 @@ GEM
       posix-spawn (~> 0.3.6)
     haml (4.0.3)
       tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
     hashr (0.0.22)
     hike (1.2.3)
     hirb (0.7.1)
@@ -254,9 +249,6 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    seed_dump (2.0.0)
-      activerecord
-      activesupport
     selenium-webdriver (2.35.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -334,23 +326,20 @@ DEPENDENCIES
   cancan (= 1.6.10)
   capybara (~> 2.0.1)
   chronic
-  coffee-rails (~> 4.0.0)
   database_cleaner (~> 1.0.1)
   decent_exposure
   devise (= 3.2.1)
   font-awesome-rails
   foundation-rails
-  haml-rails
   iconv
   jazz_hands
   jbuilder (~> 1.2)
-  jquery-rails
   kaminari
   launchy
   mutations
   nokogiri
   open_uri_redirections
-  pg
+  pg (= 0.17.0)
   protected_attributes
   rails (= 4.0.1)
   rails-timeago
@@ -360,8 +349,6 @@ DEPENDENCIES
   rspec-given
   rspec-rails
   rspec-sidekiq
-  sass-rails (~> 4.0.0)
-  seed_dump
   sidekiq (= 2.15.0)
   sidetiq (= 0.4.3)
   sinatra
