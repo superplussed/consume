@@ -44,6 +44,4 @@ group :development do
   gem 'better_errors', '~> 0.8.0'
 end
 
-
-
-
+ruby "2.0.0"

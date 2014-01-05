@@ -20,7 +20,6 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean
     City.create(subdomain: "newyork", name: "newyork", state: "New York", country: "US", abbrev: "")
-    Settings.create
   end
 
   config.before(:each) do
