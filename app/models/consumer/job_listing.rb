@@ -29,6 +29,10 @@ class Consumer::JobListing
 
 private
 
+  def root_url
+    Link.new(query.first.url).root
+  end
+
   def query 
     if id.present?
       JobListing.where(id: id)
@@ -45,8 +49,12 @@ private
   def email doc
     el = doc.css(".replylink")
     el = doc.css(".dateReplyBar a") unless el
-    tag = parse_a_tag(el)
-    tag[:href] if tag
+    if tag = parse_a_tag(el)
+      email_url = tag[:href] 
+      email_doc = Document.new("#{root_url}#{email_url}").root
+      el = email_doc.css(".anonemail")
+      el.attribute("value").to_s
+    end
   end
 
   def body doc
