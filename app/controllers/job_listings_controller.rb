@@ -9,10 +9,6 @@ class JobListingsController < ApplicationController
     end
   }
 
-  def index
-
-  end
-
   def scrape
     job_listing.scrape
     redirect_to job_listing

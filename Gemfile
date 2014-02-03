@@ -27,15 +27,16 @@ gem 'rails_admin'
 gem 'open_uri_redirections'
 gem 'tire', '0.6.1'
 gem 'decent_exposure'
+gem 'pacecar'
 
 group :test do
   gem 'rspec'
-  gem 'rspec-given'
+  gem 'database_cleaner', '~> 1.0.1'
   gem 'rspec-rails'
+  gem 'rspec-given'
   gem 'rspec-sidekiq'
   gem 'capybara', '~> 2.0.1'
   gem 'launchy'
-  gem 'database_cleaner', '~> 1.0.1'
 end
 
 group :development do

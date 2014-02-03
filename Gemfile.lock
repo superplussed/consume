@@ -145,6 +145,8 @@ GEM
       mini_portile (~> 0.5.0)
     open_uri_redirections (0.1.4)
     orm_adapter (0.4.0)
+    pacecar (2.0.0)
+      activerecord (>= 4.0.0)
     pg (0.17.0)
     polyamorous (0.6.3)
       activerecord (>= 3.0)
@@ -339,6 +341,7 @@ DEPENDENCIES
   mutations
   nokogiri
   open_uri_redirections
+  pacecar
   pg (= 0.17.0)
   protected_attributes
   rails (= 4.0.1)
