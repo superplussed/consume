@@ -24,7 +24,7 @@
 
 .row
   - if job_listing.email.present?
-    %a{href: job_listing.email, target: "_blank"}
+    %a{href: "mailto:#{job_listing.email}", target: "_blank"}
       .button Email
 
   %a{href: job_listing.absolute_url}

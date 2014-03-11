@@ -17,7 +17,7 @@ class Consumer::JobList
         document.css(".row").each do |row|
           pl = row.css(".pl")
           a_tag = parse_a_tag(pl)
-          ::JobListing::Upsert.run!(
+          ::JobListing::Upsert.run(
             city: city,
             url: a_tag[:href], 
             title: force_encode(a_tag[:text]), 
